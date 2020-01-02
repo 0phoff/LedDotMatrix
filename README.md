@@ -1,6 +1,6 @@
 <img alt="LED DOT MATRIX" src="./logo.svg" width="100%">
 
-C++ library for driving a LED Dot Matrix with MAX7219 chip through SPI.
+C++ library for driving a LED Dot Matrix with MAX7219 ICs through SPI.
 
 This library provides some abstractions around the linux spidev, in order to drive a dot matrix through a (series of) MAX7219 IC(s).
 Check out `test/main.cpp` for a quick primer on how to use the library.
@@ -17,7 +17,7 @@ Follow these steps to build this library (and test code).
 
 ## Using this library
 You can follow the steps above to generate a library file, which you can then use in any project.  
-Another way of using this library, is to clone this repository in a subfolder of your project (eg. git submodule), add include it in your own premake file:
+Another way of using this library, is to clone this repository in a subfolder of your project (eg. git submodule), and include it in your own premake file:
 
 ```lua
 workspace "YourWorkspace"

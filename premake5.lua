@@ -9,8 +9,8 @@ project "LedDotMatrix"
   kind "StaticLib"
   language "C++"
   cppdialect "C++17"
-  targetdir "bin/"
-  objdir "bin-int/"
+  targetdir "bin"
+  objdir "obj"
 
   files {
     "src/**.cpp",
@@ -41,8 +41,8 @@ project "LDMTest"
   kind "ConsoleApp"
   language "C++"
   cppdialect "C++17"
-  targetdir "bin/"
-  objdir "bin-int/"
+  targetdir "bin"
+  objdir "obj"
 
   files {
    "test/**.cpp",

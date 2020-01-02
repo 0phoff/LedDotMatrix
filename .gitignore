@@ -1,4 +1,4 @@
 bin/
-bin-int/
+obj/
 Makefile
 *.make

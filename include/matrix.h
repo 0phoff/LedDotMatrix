@@ -8,7 +8,7 @@ namespace LDM
   class Matrix
   {
     private:
-      std::unique_ptr<bool[]> m_grid;
+      bool* m_grid;
       unsigned char* m_data;
       const std::string m_device;
       const unsigned int m_speed, m_num_cascaded;

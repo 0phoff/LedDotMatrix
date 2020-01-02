@@ -1,4 +1,5 @@
-![LED DOT MATRIX](https://raw.github.com/0phoff/LedDotMatrix/master/docs/logo.svg?sanitize=true)  
+<img alt="LED DOT MATRIX" src="./logo.svg" width="100%">
+
 C++ library for driving a LED Dot Matrix with MAX7219 chip through SPI.
 
 This library provides some abstractions around the linux spidev, in order to drive a dot matrix through a (series of) MAX7219 IC(s).

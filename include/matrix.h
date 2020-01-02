@@ -21,9 +21,16 @@ namespace LDM
       ~Matrix();
 
       // Getters
-      const std::string& getDevice() const { return m_device; }
-      int getSpeed() const { return m_speed; }
-      int getNumCascaded() const { return m_num_cascaded; }
+      inline const std::string& getDevice() const { return m_device; }
+      inline int getSpeed() const { return m_speed; }
+      inline int getNumCascaded() const { return m_num_cascaded; }
+      inline bool* getGrid() { return m_grid; }
+      inline bool getLed(unsigned int x, unsigned y) const
+      {
+        assert(x < 8 * m_num_cascaded);   // X should be inside grid
+        assert(y < 8);                    // Y should be inside grid
+        return m_grid[8 * x + y];
+      }
 
       // Setters
       inline void setLed(unsigned int x, unsigned int y, bool value)
@@ -36,6 +43,7 @@ namespace LDM
       // Functionality
       void clear();
       void flush(bool clear_grid=true);
+      bool toggleLed(unsigned int x, unsigned int y);
   };
 
 }

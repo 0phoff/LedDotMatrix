@@ -78,4 +78,11 @@ namespace LDM
     if (clear_grid)
       std::fill(m_grid, m_grid + (64 * m_num_cascaded), 0);
   }
+
+  bool Matrix::toggleLed(unsigned int x, unsigned int y)
+  {
+    bool value = !getLed(x, y);
+    setLed(x, y, value);
+    return value;
+  }
 }

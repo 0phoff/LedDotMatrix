@@ -10,7 +10,7 @@ project "LedDotMatrix"
   language "C++"
   cppdialect "C++17"
   targetdir "bin/"
-	objdir "bin-int/"
+  objdir "bin-int/"
 
   files {
     "src/**.cpp",
@@ -24,17 +24,17 @@ project "LedDotMatrix"
   }
 
   filter "configurations:Debug"
-		defines "LDM_DEBUG"
-		runtime "Debug"
-		symbols "on"
+    defines "LDM_DEBUG"
+    runtime "Debug"
+    symbols "on"
 
-	filter "configurations:Release"
-		defines {
+  filter "configurations:Release"
+    defines {
       "LDM_RELEASE",
       "NDEBUG"
     }
-		runtime "Release"
-		optimize "on"
+    runtime "Release"
+    optimize "on"
 
 
 project "LDMTest"
@@ -42,7 +42,7 @@ project "LDMTest"
   language "C++"
   cppdialect "C++17"
   targetdir "bin/"
-	objdir "bin-int/"
+  objdir "bin-int/"
 
   files {
    "test/**.cpp",
@@ -53,14 +53,14 @@ project "LDMTest"
     "include",
   }
 
-  links	{
-		"LedDotMatrix",
-	}
+  links {
+    "LedDotMatrix",
+  }
 
   filter "configurations:Debug"
-		runtime "Debug"
-		symbols "on"
+    runtime "Debug"
+    symbols "on"
 
-	filter "configurations:Release"
-		runtime "Release"
-		optimize "on"
+  filter "configurations:Release"
+    runtime "Release"
+    optimize "on"

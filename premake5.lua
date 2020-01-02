@@ -29,7 +29,10 @@ project "LedDotMatrix"
 		symbols "on"
 
 	filter "configurations:Release"
-		defines "LDM_RELEASE"
+		defines {
+      "LDM_RELEASE",
+      "NDEBUG"
+    }
 		runtime "Release"
 		optimize "on"
 

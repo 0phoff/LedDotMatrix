@@ -1,6 +1,4 @@
 #include <algorithm>
-#include <stdexcept>
-#include <cassert>
 #include <fcntl.h>
 #include <unistd.h>
 #include <sys/ioctl.h>
@@ -79,11 +77,5 @@ namespace LDM
 
     if (clear_grid)
       std::fill(m_grid, m_grid + (64 * m_num_cascaded), 0);
-  }
-
-  void Matrix::setLed(unsigned int x, unsigned int y, bool value)
-  {
-    assert(("X/Y should be inside of grid range", (x >= 8 * m_num_cascaded) || (y >= 8)));
-    m_grid[8 * x + y] = value;
   }
 }

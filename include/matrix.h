@@ -1,6 +1,7 @@
 #pragma once
 #include <memory>
 #include <string>
+#include <cassert>
 
 namespace LDM
 {
@@ -24,10 +25,17 @@ namespace LDM
       int getSpeed() const { return m_speed; }
       int getNumCascaded() const { return m_num_cascaded; }
 
+      // Setters
+      inline void setLed(unsigned int x, unsigned int y, bool value)
+      {
+        assert(x < 8 * m_num_cascaded);   // X should be inside grid
+        assert(y < 8);                    // Y should be inside grid
+        m_grid[8 * x + y] = value;
+      }
+
       // Functionality
       void clear();
       void flush(bool clear_grid=true);
-      void setLed(unsigned int x, unsigned int y, bool value);
   };
 
 }

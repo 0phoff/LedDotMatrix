@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <cctype>
 #include <fcntl.h>
 #include <unistd.h>
 #include <sys/ioctl.h>
@@ -13,6 +14,8 @@ namespace LDM
   {
     m_grid = new bool[64 * m_num_cascaded];
     m_data = new unsigned char[2 * m_num_cascaded];
+    m_font = nullptr;
+    resetPointer();
 
     // Setup SPI device on Linux side
     m_fd = open(m_device.c_str(), O_RDWR);
@@ -49,6 +52,8 @@ namespace LDM
   void Matrix::clear()
   {
     std::fill(m_grid, m_grid + (64 * m_num_cascaded), 0);
+    m_pointer_x = 0;
+    m_pointer_y = 7;
     
     for (unsigned int row=0; row < 9; row++) {
       for (int i=0; i < m_num_cascaded; i++) {
@@ -75,8 +80,11 @@ namespace LDM
       
     }
 
-    if (clear_grid)
+    if (clear_grid) {
       std::fill(m_grid, m_grid + (64 * m_num_cascaded), 0);
+      m_pointer_x = 0;
+      m_pointer_y = 7;
+    }
   }
 
   bool Matrix::toggleLed(unsigned int x, unsigned int y)
@@ -84,5 +92,35 @@ namespace LDM
     bool value = !getLed(x, y);
     setLed(x, y, value);
     return value;
+  }
+
+  void Matrix::print(const std::string& string, bool overwrite)
+  {
+    assert(m_font);   // Font cannot be null
+    auto width = m_font->getWidth();
+    auto height = m_font->getHeight();
+    auto space = m_font->getSpace();
+
+    for (auto val : string) {
+      const unsigned char* bitmap = m_font->getChar(toupper(val));
+
+      for (int i=0; i < width; i++) {
+        if (m_pointer_x < 0) {
+          m_pointer_x++;
+          continue;
+        }
+        else if (m_pointer_x > 8 * m_num_cascaded)
+          break;
+
+        auto row = bitmap[i];
+        for (int j=0; j < height; j++) {
+          bool led_value = (row & (1<<j)) != 0;
+          if (led_value || overwrite)
+            setLed(m_pointer_x, m_pointer_y - j, led_value);
+        }
+        m_pointer_x++;
+      }
+      m_pointer_x += space;
+    }
   }
 }

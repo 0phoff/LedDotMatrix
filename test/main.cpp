@@ -57,8 +57,8 @@ void fontTest(LDM::Matrix& mat)
 {
   // Write with small font
   std::cout << "    Small font test" << std::endl;
-  mat.setFont(&LDM::small_font);
-  mat.setPointer(1, 6);
+  mat.setFont(&LDM::small_font, 0);
+  mat.setPointer(3, 6);
   mat.print("01234");
   mat.flush();
   sleep(2);

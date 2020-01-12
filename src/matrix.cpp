@@ -99,7 +99,6 @@ namespace LDM
     assert(m_font);   // Font cannot be null
     auto width = m_font->getWidth();
     auto height = m_font->getHeight();
-    auto space = m_font->getSpace();
 
     for (auto val : string) {
       const unsigned char* bitmap = m_font->getChar(toupper(val));
@@ -120,7 +119,7 @@ namespace LDM
         }
         m_pointer_x++;
       }
-      m_pointer_x += space;
+      m_pointer_x += m_font_space;
     }
   }
 }

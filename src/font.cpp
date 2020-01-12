@@ -4,11 +4,11 @@
 namespace LDM
 {
   Font::Font(
-    unsigned int width, unsigned int height, unsigned int space,
+    unsigned int width, unsigned int height,
     unsigned char min_val, unsigned char max_val,
     const unsigned char* data
   )
-    : m_width(width), m_height(height), m_space(space), m_min_val(min_val), m_max_val(max_val), m_data(data)
+    : m_width(width), m_height(height), m_min_val(min_val), m_max_val(max_val), m_data(data)
   {}
 
   const unsigned char small_data[] = {
@@ -56,7 +56,7 @@ namespace LDM
     0x10, 0x08, 0x07, 0x08, 0x10,   // Y
     0x11, 0x13, 0x15, 0x19, 0x11,   // Z
   };
-  const Font small_font(5, 5, 1, 48, 90, small_data);
+  const Font small_font(5, 5, 48, 90, small_data);
 
   const unsigned char big_data[] = {
     0x3E, 0x45, 0x49, 0x51, 0x3E,   // 0
@@ -103,5 +103,5 @@ namespace LDM
     0x40, 0x20, 0x1F, 0x20, 0x40,   // Y
     0x43, 0x45, 0x49, 0x51, 0x61,   // Z
   };
-  const Font big_font(5, 7, 1, 48, 90, big_data);
+  const Font big_font(5, 7, 48, 90, big_data);
 }

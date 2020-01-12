@@ -17,6 +17,7 @@ namespace LDM
       int m_fd;
       unsigned int m_pointer_x, m_pointer_y;
       const Font* m_font;
+      int m_font_space;
 
     public:
       // CTOR
@@ -28,6 +29,7 @@ namespace LDM
       inline int getSpeed() const { return m_speed; }
       inline int getNumCascaded() const { return m_num_cascaded; }
       inline const Font* getFont() const { return m_font; }
+      inline int getFontSpace() const {return m_font_space; }
       inline unsigned int getPointerX() const { return m_pointer_x; }
       inline unsigned int getPointerY() const { return m_pointer_y; }
       inline std::pair<unsigned int, unsigned int> getPointer() const { return {m_pointer_x, m_pointer_y}; }
@@ -40,7 +42,8 @@ namespace LDM
       }
 
       // Setters
-      inline void setFont(const Font* font) { m_font = font; }
+      inline void setFont(const Font* font, int space=1) { m_font = font; m_font_space = space; }
+      inline void setFontSpace(int space) { m_font_space = space; }
       inline void setPointerX(unsigned int x) { m_pointer_x = x; }
       inline void setPointerY(unsigned int y) { m_pointer_y = y; }
       inline void setPointer(unsigned int x, unsigned int y)

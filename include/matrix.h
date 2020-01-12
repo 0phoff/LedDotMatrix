@@ -25,16 +25,16 @@ namespace LDM
       ~Matrix();
 
       // Getters
-      inline const std::string& getDevice() const { return m_device; }
-      inline int getSpeed() const { return m_speed; }
-      inline int getNumCascaded() const { return m_num_cascaded; }
-      inline const Font* getFont() const { return m_font; }
-      inline int getFontSpace() const {return m_font_space; }
-      inline unsigned int getPointerX() const { return m_pointer_x; }
-      inline unsigned int getPointerY() const { return m_pointer_y; }
-      inline std::pair<unsigned int, unsigned int> getPointer() const { return {m_pointer_x, m_pointer_y}; }
-      inline bool* getGrid() { return m_grid; }
-      inline bool getLed(unsigned int x, unsigned y) const
+      const std::string& getDevice() const { return m_device; }
+      int getSpeed() const { return m_speed; }
+      int getNumCascaded() const { return m_num_cascaded; }
+      const Font* getFont() const { return m_font; }
+      int getFontSpace() const {return m_font_space; }
+      unsigned int getPointerX() const { return m_pointer_x; }
+      unsigned int getPointerY() const { return m_pointer_y; }
+      std::pair<unsigned int, unsigned int> getPointer() const { return {m_pointer_x, m_pointer_y}; }
+      bool* getGrid() { return m_grid; }
+      bool getLed(unsigned int x, unsigned y) const
       {
         assert(x < 8 * m_num_cascaded);   // X should be inside grid
         assert(y < 8);                    // Y should be inside grid
@@ -42,21 +42,21 @@ namespace LDM
       }
 
       // Setters
-      inline void setFont(const Font* font, int space=1) { m_font = font; m_font_space = space; }
-      inline void setFontSpace(int space) { m_font_space = space; }
-      inline void setPointerX(unsigned int x) { m_pointer_x = x; }
-      inline void setPointerY(unsigned int y) { m_pointer_y = y; }
-      inline void setPointer(unsigned int x, unsigned int y)
+      void setFont(const Font* font, int space=1) { m_font = font; m_font_space = space; }
+      void setFontSpace(int space) { m_font_space = space; }
+      void setPointerX(unsigned int x) { m_pointer_x = x; }
+      void setPointerY(unsigned int y) { m_pointer_y = y; }
+      void setPointer(unsigned int x, unsigned int y)
       {
         m_pointer_x = x;
         m_pointer_y = y;
       }
-      inline void resetPointer()
+      void resetPointer()
       {
         m_pointer_x = 0;
         m_pointer_y = 7;
       }
-      inline void setLed(unsigned int x, unsigned int y, bool value)
+      void setLed(unsigned int x, unsigned int y, bool value)
       {
         assert(x < 8 * m_num_cascaded);   // X should be inside grid
         assert(y < 8);                    // Y should be inside grid

@@ -17,10 +17,10 @@ namespace LDM
       );
       
       // Getters
-      inline unsigned int getWidth() const { return m_width; }
-      inline unsigned int getHeight() const { return m_height; }
-      inline unsigned char getMinVal() const { return m_min_val; }
-      inline unsigned char getMaxVal() const { return m_max_val; }
+      unsigned int getWidth() const { return m_width; }
+      unsigned int getHeight() const { return m_height; }
+      unsigned char getMinVal() const { return m_min_val; }
+      unsigned char getMaxVal() const { return m_max_val; }
       const unsigned char* getChar(unsigned char value) const
       {
         assert(value >= m_min_val);   // Value should be bigger than representable min_value

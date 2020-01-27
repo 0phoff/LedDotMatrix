@@ -1,36 +1,30 @@
-workspace "LedDotMatrix"
-  configurations {
-    "Release",
-    "Debug",
-  }
-  startproject "LDMTest"
-
-include "ldm.lua"
-
-project "LDMTest"
-  kind "ConsoleApp"
+project "LedDotMatrix"
+  kind "StaticLib"
   language "C++"
   cppdialect "C++17"
   targetdir "bin"
   objdir "obj"
 
   files {
-   "test/**.cpp",
-   "test/**.h",
+    "src/**.cpp",
+    "src/**.h",
+    "include/**.h",
   }
 
   includedirs {
-    "include",
-  }
-
-  links {
-    "LedDotMatrix",
+    "include/LDM",
+    "src",
   }
 
   filter "configurations:Debug"
+    defines "LDM_DEBUG"
     runtime "Debug"
     symbols "on"
 
   filter "configurations:Release"
+    defines {
+      "LDM_RELEASE",
+      "NDEBUG"
+    }
     runtime "Release"
     optimize "on"

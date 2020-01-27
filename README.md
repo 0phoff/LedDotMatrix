@@ -23,7 +23,7 @@ Another way of using this library, is to clone this repository in a subfolder of
 workspace "YourWorkspace"
 -- Workspace related configurations
 
-include "path/to/ldm-library"
+include "path/to/ldm-library/ldm.lua"
 
 project "YourProject"
 -- Create your project here

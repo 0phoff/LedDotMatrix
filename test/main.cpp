@@ -1,8 +1,8 @@
 #include <iostream>
 #include <algorithm>
 #include <unistd.h>
-#include "matrix.h"
-#include "font.h"
+#include "LDM/matrix.h"
+#include "LDM/font.h"
 
 #define NUM_CASCADED 4
 

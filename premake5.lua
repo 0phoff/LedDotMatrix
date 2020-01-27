@@ -15,11 +15,11 @@ project "LedDotMatrix"
   files {
     "src/**.cpp",
     "src/**.h",
-    "include/*.h",
+    "include/**.h",
   }
 
   includedirs {
-    "include",
+    "include/LDM",
     "src",
   }
 

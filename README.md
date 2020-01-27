@@ -21,20 +21,16 @@ Another way of using this library, is to clone this repository in a subfolder of
 
 ```lua
 workspace "YourWorkspace"
--- Workspace related configurations
+  -- Workspace related configurations
 
-include "path/to/ldm-library/ldm.lua"
+  -- Include LDM library as a premake project
+  include "path/to/ldm-library/ldm.lua"
 
 project "YourProject"
--- Create your project here
+  -- Create your project here
 
-  includedirs {
-    "path/to/ldm-library/include",
-  }
-
-  links {
-    "LedDotMatrix",
-  }
+  -- useLDM is a utility function which adds the necessary includes and links the LDM project
+  useLDM "path/to/ldm-library"
 ```
 
 Check out the `premake5.lua` of this repo for an example.

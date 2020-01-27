@@ -28,3 +28,9 @@ project "LedDotMatrix"
     }
     runtime "Release"
     optimize "on"
+
+
+function useLDM(path)
+  includedirs(path .. "/include")
+  links "LedDotMatrix"
+end

@@ -1,11 +1,13 @@
 workspace "LedDotMatrix"
+  -- Workspace related configurations
   configurations {
     "Release",
     "Debug",
   }
   startproject "LDMTest"
 
-include "ldm.lua"
+  -- Include LDM library as a premake project
+  include "ldm.lua"
 
 project "LDMTest"
   kind "ConsoleApp"
@@ -14,17 +16,12 @@ project "LDMTest"
   targetdir "bin"
   objdir "obj"
 
+  -- Link LDM library (we are in same dir as LDM, so no path is needed)
+  useLDM()
+
   files {
    "test/**.cpp",
    "test/**.h",
-  }
-
-  includedirs {
-    "include",
-  }
-
-  links {
-    "LedDotMatrix",
   }
 
   filter "configurations:Debug"

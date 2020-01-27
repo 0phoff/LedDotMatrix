@@ -30,7 +30,7 @@ project "LedDotMatrix"
     optimize "on"
 
 
-function useLDM(path)
-  includedirs(path .. "/include")
+function useLDM(lib_path)
+  includedirs(path.join(lib_path, "include"))
   links "LedDotMatrix"
 end

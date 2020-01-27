@@ -27,7 +27,17 @@ include "path/to/ldm-library/ldm.lua"
 
 project "YourProject"
 -- Create your project here
+
+  includedirs {
+    "path/to/ldm-library/include",
+  }
+
+  links {
+    "LedDotMatrix",
+  }
 ```
+
+Check out the `premake5.lua` of this repo for an example.
 
 
 ## Assumptions

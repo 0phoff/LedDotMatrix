@@ -24,7 +24,14 @@ namespace LDM
     ioctl(m_fd, SPI_IOC_WR_MAX_SPEED_HZ, &m_speed);
     ioctl(m_fd, SPI_IOC_WR_LSB_FIRST, 0);
 
-    // Disable MAX7219 Shutdown mode
+    // Disable MAX7219 test mode
+    for (int i=0; i < m_num_cascaded; i++) {
+      m_data[i * 2] = 0x0F;
+      m_data[i * 2 + 1] = 0x00;
+    }
+    write(m_fd, m_data, 2 * m_num_cascaded);
+
+    // Disable MAX7219 shutdown mode
     for (int i=0; i < m_num_cascaded; i++) {
       m_data[i * 2] = 0x0C;
       m_data[i * 2 + 1] = 0x01;

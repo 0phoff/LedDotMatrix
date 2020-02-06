@@ -12,6 +12,7 @@ namespace LDM
     private:
       const std::string m_device;
       const unsigned int m_num_cascaded, m_speed;
+      unsigned char m_intensity;
       bool* m_grid;
       unsigned char* m_data;
       int m_fd;
@@ -21,13 +22,14 @@ namespace LDM
 
     public:
       // CTOR
-      Matrix(std::string device, int num_cascaded, int speed=100000);
+      Matrix(std::string device, unsigned int num_cascaded, unsigned int speed=100000, unsigned char intensity=0);
       ~Matrix();
 
       // Getters
       const std::string& getDevice() const { return m_device; }
-      int getSpeed() const { return m_speed; }
-      int getNumCascaded() const { return m_num_cascaded; }
+      unsigned int getSpeed() const { return m_speed; }
+      unsigned int getNumCascaded() const { return m_num_cascaded; }
+      unsigned int getIntensity() const { return m_intensity; }
       const Font* getFont() const { return m_font; }
       int getFontSpace() const {return m_font_space; }
       unsigned int getPointerX() const { return m_pointer_x; }
@@ -42,6 +44,7 @@ namespace LDM
       }
 
       // Setters
+      void setIntensity(unsigned char value);
       void setFont(const Font* font, int space=1) { m_font = font; m_font_space = space; }
       void setFontSpace(int space) { m_font_space = space; }
       void setPointerX(unsigned int x) { m_pointer_x = x; }

@@ -47,6 +47,15 @@ void ledTest(LDM::Matrix& mat)
   }
   mat.flush();
   sleep(2);
+
+  // Intensity
+  std::cout << "    Intensity test" << std::endl;
+  for (unsigned char i=0; i <= 16; i++) {
+    mat.setIntensity(i);
+    sleep(1);
+  }
+  sleep(2);
+  mat.setIntensity(0);
 }
 
 

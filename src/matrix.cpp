@@ -9,8 +9,8 @@
 
 namespace LDM
 {
-  Matrix::Matrix(std::string device, int num_cascaded, int speed)
-    : m_device(device), m_num_cascaded(num_cascaded), m_speed(speed)
+  Matrix::Matrix(std::string device, unsigned int num_cascaded, unsigned int speed, unsigned char intensity)
+    : m_device(device), m_num_cascaded(num_cascaded), m_speed(speed), m_intensity(intensity)
   {
     m_grid = new bool[64 * m_num_cascaded];
     m_data = new unsigned char[2 * m_num_cascaded];
@@ -38,6 +38,14 @@ namespace LDM
     }
     write(m_fd, m_data, 2 * m_num_cascaded);
 
+    // Set MAX7219 intensity
+    assert(m_intensity <= 16);  // Maximum intensity is 0x0F
+    for (int i=0; i < m_num_cascaded; i++) {
+      m_data[i * 2] = 0x0A;
+      m_data[i * 2 + 1] = m_intensity;
+    }
+    write(m_fd, m_data, 2 * m_num_cascaded);
+
     // Clear screen
     clear();
   }
@@ -47,6 +55,21 @@ namespace LDM
     delete[] m_data;
     delete[] m_grid;
     close(m_fd);
+  }
+
+  void Matrix::setIntensity(unsigned char value)
+  {
+    if (value != m_intensity) {
+      assert(value <= 16);  // Maximum intensity is 0x0F
+
+      for (int i=0; i < m_num_cascaded; i++) {
+        m_data[i * 2] = 0x0A;
+        m_data[i * 2 + 1] = value;
+      }
+      write(m_fd, m_data, 2 * m_num_cascaded);
+
+      m_intensity = value;
+    }
   }
 
   void Matrix::clear()

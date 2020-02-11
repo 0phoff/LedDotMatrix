@@ -152,4 +152,30 @@ namespace LDM
       m_pointer_x += m_font_space;
     }
   }
+
+  void Matrix::print(char value, bool overwrite)
+  {
+    assert(m_font);   // Font cannot be null
+    auto width = m_font->getWidth();
+    auto height = m_font->getHeight();
+
+    const unsigned char* bitmap = m_font->getChar(value);
+    for (int i=0; i < width; i++) {
+      if (m_pointer_x < 0) {
+        m_pointer_x++;
+        continue;
+      }
+      else if (m_pointer_x > 8 * m_num_cascaded)
+        break;
+
+      auto row = bitmap[i];
+      for (int j=0; j < height; j++) {
+        bool led_value = (row & (1<<j)) != 0;
+        if (led_value || overwrite)
+          setLed(m_pointer_x, m_pointer_y - j, led_value);
+      }
+      m_pointer_x++;
+    }
+    m_pointer_x += m_font_space;
+  }
 }

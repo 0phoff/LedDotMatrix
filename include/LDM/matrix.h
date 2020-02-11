@@ -71,5 +71,6 @@ namespace LDM
       void flush(bool clear_grid=true);
       bool toggleLed(unsigned int x, unsigned int y);
       void print(const std::string& string, bool overwrite=true);
+      void print(char value, bool overwrite=true);
   };
 }

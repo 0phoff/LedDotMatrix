@@ -67,7 +67,7 @@ namespace LDM
   void Matrix::setIntensity(unsigned char value)
   {
     if (value != m_intensity) {
-      assert(value <= 16);  // Maximum intensity is 0x0F
+      assert(value <= 15);  // Maximum intensity is 0x0F
 
       for (int i=0; i < m_num_cascaded; i++) {
         m_data[i * 2] = 0x0A;
